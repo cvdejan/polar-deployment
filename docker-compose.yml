@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+
+  # Applications
+
+  catalog-service:
+    depends_on:
+      - polar-postgres
+    image: "catalog-service"
+    container_name: "catalog-service"
+    ports:
+      - 9001:9001
+    environment:
+      # Buildpacks environment variable to configure the number of threads in memory calculation
+      - BPL_JVM_THREAD_COUNT=50
+      # Buildpacks environment variable to enable debug through a socket on port 8001
+      - BPL_DEBUG_ENABLED=true
+      - BPL_DEBUG_PORT=8001
+      - SPRING_PROFILES_ACTIVE=testdata
+
+  # Backing Services
+
+  polar-postgres:
+    image: "postgres:15.2"
+    container_name: "polar-postgres"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=polardb_catalog
