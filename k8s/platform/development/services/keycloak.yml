@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: polar-keycloak
-          image: quay.io/keycloak/keycloak:22.0.1
+          image: quay.io/keycloak/keycloak:19.0
           args:
             - "start-dev"
           ports:
@@ -67,21 +67,24 @@ spec:
 
 ---
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: keycloak-ingress
-  labels:
-    app: polar-keycloak
-spec:
-  rules:
-    - host: polar-keycloak
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: polar-keycloak
-                port:
-                  number: 80
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: keycloak-ingress
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#   labels:
+#     app: polar-keycloak
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - host: polar-keycloak
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: polar-keycloak
+#                 port:
+#                   number: 80
