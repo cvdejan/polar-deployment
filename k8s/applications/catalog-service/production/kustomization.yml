@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - github.com/cvdejan/catalog-service/k8s?ref=e19b14df1899027f92eacba08fd1cf27c3217ca234765dbd403e3a4ceb0ad766
+  - github.com/cvdejan/catalog-service/k8s?ref=243e75deb9a043bbfb1c317a161c4a9967ee269d
 
 patchesStrategicMerge:
   - patch-env.yml
@@ -18,7 +18,7 @@ configMapGenerator:
 images:
   - name: catalog-service
     newName: ghcr.io/cvdejan/catalog-service
-    newTag: e19b14df1899027f92eacba08fd1cf27c3217ca234765dbd403e3a4ceb0ad766
+    newTag: 243e75deb9a043bbfb1c317a161c4a9967ee269d
 
 replicas:
   - name: catalog-service
