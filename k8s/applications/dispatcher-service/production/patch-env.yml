@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dispatcher-service
+spec:
+  template:
+    spec:
+      containers:
+        - name: dispatcher-service
+          env:
+            - name: BPL_JVM_THREAD_COUNT
+              value: "50"          
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
