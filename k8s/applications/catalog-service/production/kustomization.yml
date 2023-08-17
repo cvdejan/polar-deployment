@@ -22,4 +22,4 @@ images:
 
 replicas:
   - name: catalog-service
-    count: 2
+    count: 1
